@@ -4,7 +4,7 @@ import feign.Feign;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.jaxrs.JAXRSContract;
-import lv.javaguru.java3.config.Application;
+import lv.javaguru.java3.Application;
 import lv.javaguru.java3.integrations.rest.api.ClientResource;
 import org.junit.Before;
 import org.junit.Ignore;

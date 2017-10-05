@@ -1,6 +1,6 @@
 package lv.javaguru.java3.core.database.clients;
 
-import lv.javaguru.java3.config.Application;
+import lv.javaguru.java3.Application;
 import lv.javaguru.java3.core.database.ClientDAO;
 import org.hibernate.SessionFactory;
 import org.junit.Ignore;
