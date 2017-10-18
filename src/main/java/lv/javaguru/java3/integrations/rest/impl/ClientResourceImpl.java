@@ -4,48 +4,38 @@ import lv.javaguru.java3.core.commands.clients.CreateClientCommand;
 import lv.javaguru.java3.core.commands.clients.CreateClientResult;
 import lv.javaguru.java3.core.commands.clients.GetClientCommand;
 import lv.javaguru.java3.core.commands.clients.GetClientResult;
-import lv.javaguru.java3.integrations.rest.dto.ClientDTO;
 import lv.javaguru.java3.core.services.CommandExecutor;
 import lv.javaguru.java3.integrations.rest.api.RESTResource;
-import lv.javaguru.java3.integrations.rest.api.ClientResource;
+import lv.javaguru.java3.integrations.rest.dto.ClientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.*;
+@RestController
+@RequestMapping(value = RESTResource.API_PATH)
+public class ClientResourceImpl  {
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+    @Autowired private CommandExecutor commandExecutor;
 
-@Component
-@Path(RESTResource.API_PATH)
-public class ClientResourceImpl implements ClientResource {
 
-    private CommandExecutor commandExecutor;
-
-    @Autowired
-    public ClientResourceImpl(CommandExecutor commandExecutor) {
-        this.commandExecutor = commandExecutor;
-    }
-
-    @POST
-    @Consumes(APPLICATION_JSON)
-    @Produces(APPLICATION_JSON)
-    @Path("/clients")
-    public ClientDTO create(ClientDTO clientDTO) {
+    @RequestMapping(value = "/clients", method = RequestMethod.POST)
+    public ResponseEntity<ClientDTO> create(@RequestBody ClientDTO clientDTO) {
         CreateClientCommand command = new CreateClientCommand(
                 clientDTO.getLogin(), clientDTO.getPassword()
         );
         CreateClientResult result = commandExecutor.execute(command);
-        return result.getClient();
+        return ResponseEntity.ok(result.getClient());
     }
 
-    @GET
-    @Consumes(APPLICATION_JSON)
-    @Produces(APPLICATION_JSON)
-    @Path("/clients/{clientId}")
-    public ClientDTO get(@PathParam("clientId") Long clientId) {
+    @RequestMapping(value = "/clients/{clientId}", method = RequestMethod.GET)
+    public ResponseEntity<ClientDTO> get(@PathVariable("clientId") Long clientId) {
         GetClientCommand command = new GetClientCommand(clientId);
         GetClientResult result = commandExecutor.execute(command);
-        return result.getClient();
+        return ResponseEntity.ok(result.getClient());
     }
 
 }

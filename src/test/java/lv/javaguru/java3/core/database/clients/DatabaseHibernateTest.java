@@ -1,18 +1,14 @@
 package lv.javaguru.java3.core.database.clients;
 
-import lv.javaguru.java3.Application;
 import lv.javaguru.java3.core.database.ClientDAO;
 import org.hibernate.SessionFactory;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@Ignore
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {Application.class})
-//@IntegrationTest("server.port:0")
+@RunWith(SpringRunner.class)
+@DataJpaTest
 public abstract class DatabaseHibernateTest {
 
 	@Autowired
