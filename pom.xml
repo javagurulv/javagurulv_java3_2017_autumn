@@ -55,7 +55,7 @@
         <!-- Liquibase -->
         <liquibase-core.version>3.5.3</liquibase-core.version>
 
-        <guava.version>23.0</guava.version>
+        <guava.version>18.0</guava.version>
 
         <!-- Spring Boot -->
         <spring-boot-starter-web.version>1.5.7.RELEASE</spring-boot-starter-web.version>
