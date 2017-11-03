@@ -1,14 +1,14 @@
 package lv.javaguru.java3.core.services.clients;
 
-import lv.javaguru.java3.core.domain.Client;
+import lv.javaguru.java3.core.domain.User;
 
 
 public interface ClientService {
 
-    Client update(Long clientId,
-                  String newLogin,
-                  String newPassword);
+    User update(Long clientId,
+                String newLogin,
+                String newPassword);
 
-    Client get(Long clientId);
+    User get(Long clientId);
 
 }

@@ -1,7 +1,7 @@
 package lv.javaguru.java3.core.services.clients;
 
 import lv.javaguru.java3.core.database.ClientDAO;
-import lv.javaguru.java3.core.domain.Client;
+import lv.javaguru.java3.core.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ClientFactoryImplTest {
+public class UserFactoryImplTest {
 
     @Mock private ClientValidator clientValidator;
     @Mock private ClientDAO clientDAO;
@@ -43,17 +43,17 @@ public class ClientFactoryImplTest {
 
     @Test
     public void createShouldPersistClientAfterValidation() {
-        Client client = clientFactory.create(LOGIN, PASSWORD);
+        User user = clientFactory.create(LOGIN, PASSWORD);
         InOrder inOrder = inOrder(clientValidator, clientDAO);
         inOrder.verify(clientValidator).validate(LOGIN, PASSWORD);
-        inOrder.verify(clientDAO).create(client);
+        inOrder.verify(clientDAO).create(user);
     }
 
     @Test
     public void createShouldReturnNewClient() {
-        Client client = clientFactory.create(LOGIN, PASSWORD);
-        assertThat(client.getLogin(), is(LOGIN));
-        assertThat(client.getPassword(), is(PASSWORD));
+        User user = clientFactory.create(LOGIN, PASSWORD);
+        assertThat(user.getLogin(), is(LOGIN));
+        assertThat(user.getPassword(), is(PASSWORD));
     }
 
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create.sequence.products_seq" author="viktor">
+        <createSequence sequenceName="products_seq" />
+    </changeSet>
+
+    <changeSet id="create.table.products" author="viktor">
+        <createTable tableName="products">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="shopping_list_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="title" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="description" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="version" type="BIGINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="modified_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add.foreign.key.constraint.products.shopping_list_id" author="viktor">
+        <addForeignKeyConstraint baseColumnNames="shopping_list_id"
+                                 baseTableName="products"
+                                 constraintName="fk_products_shopping_list_id"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="shopping_lists"/>
+    </changeSet>
+
+    <changeSet id="create.index.products_shopping_list_id" author="viktor">
+        <createIndex indexName="idx_products_shopping_lists_id"
+                     tableName="products"
+                     unique="false">
+            <column name="shopping_list_id" type="BIGINT"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

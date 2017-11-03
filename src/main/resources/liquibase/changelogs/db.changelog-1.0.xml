@@ -6,24 +6,48 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="1" author="viktor" context="main">
-        <createSequence sequenceName="clients_seq" />
+    <changeSet id="create.sequence.users_seq" author="viktor">
+        <createSequence sequenceName="users_seq" />
     </changeSet>
 
-    <changeSet id="2" author="viktor" context="main">
-        <createTable tableName="clients">
-            <column name="id" type="BIGINT" autoIncrement="true">
+    <changeSet id="create.table.users" author="viktor">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="login" type="varchar(50)">
+            <column name="login" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="password" type="varchar(50)">
+            <column name="password" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="version" type="BIGINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="modified_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="create.index.users.login" author="viktor">
+        <createIndex indexName="idx_users_login"
+                     tableName="users"
+                     unique="true">
+            <column name="login" type="VARCHAR(100)"/>
+        </createIndex>
     </changeSet>
 
 </databaseChangeLog>

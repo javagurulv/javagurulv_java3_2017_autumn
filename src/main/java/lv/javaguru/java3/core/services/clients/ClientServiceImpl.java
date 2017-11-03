@@ -1,7 +1,7 @@
 package lv.javaguru.java3.core.services.clients;
 
 import lv.javaguru.java3.core.database.ClientDAO;
-import lv.javaguru.java3.core.domain.Client;
+import lv.javaguru.java3.core.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,18 +13,18 @@ class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public Client update(Long clientId,
-                         String newLogin,
-                         String newPassword) {
+    public User update(Long clientId,
+                       String newLogin,
+                       String newPassword) {
         clientValidator.validate(newLogin, newPassword);
-        Client client = get(clientId);
-        client.setLogin(newLogin);
-        client.setPassword(newPassword);
-        return client;
+        User user = get(clientId);
+        user.setLogin(newLogin);
+        user.setPassword(newPassword);
+        return user;
     }
 
     @Override
-    public Client get(Long clientId) {
+    public User get(Long clientId) {
         return clientDAO.getRequired(clientId);
     }
 
