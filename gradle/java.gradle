@@ -3,7 +3,3 @@ apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-task dist {
-    dependsOn 'build'
-}
