@@ -4,31 +4,44 @@ import lv.javaguru.java3.core.domain.User;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static lv.javaguru.java3.core.domain.builders.UserBuilder.createUser;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-public class UserDAOImplTest extends DatabaseHibernateTest {
+public class UserDAOImplTest extends DatabaseJPATest {
 
     @Test
     @Transactional
-    public void testCreateClient() {
+    public void testSaveUser() {
         User user = createUser()
                 .withLogin("login")
-                .withPassword("password").build();
+                .withPassword("password")
+                .withEmail("email").build();
         assertThat(user.getId(), is(nullValue()));
-        clientDAO.create(user);
+        user = userRepository.save(user);
         assertThat(user.getId(), is(notNullValue()));
     }
 
     @Test
     @Transactional
-    public void testGetClientById() {
+    public void testFindOneByLogin() {
+        Optional<User> userFromDb = userRepository.findOneByLogin("not-existing-login");
+        assertThat(userFromDb.isPresent(), is(false));
+    }
+
+    @Test
+    @Transactional
+    public void testGetRequiredByLogin() {
         User user = createUser()
                 .withLogin("login")
-                .withPassword("password").build();
-        clientDAO.create(user);
-        User userFromDb = clientDAO.getById(user.getId());
+                .withPassword("password")
+                .withEmail("email").build();
+        userRepository.save(user);
+        User userFromDb = userRepository.getRequiredByLogin(user.getLogin());
         assertThat(userFromDb, is(notNullValue()));
     }
 
