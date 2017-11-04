@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE"
+    }
+}
+
+apply from: "${rootDir}/gradle/dependencies.gradle"
+
+allprojects {
+    group "lv.javaguru.java3"
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+    
+}
+
+apply plugin: "idea"
+
+idea {
+    project {
+        languageLevel = "1.8"
+    }
+}
+
+wrapper {
+    gradleVersion "4.1"
+}

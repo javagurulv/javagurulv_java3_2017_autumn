@@ -1,0 +1,10 @@
+apply from: "${rootDir}/gradle/java.gradle"
+
+apply plugin: 'org.springframework.boot'
+
+project(":application") {
+    dependencies {
+        compile project(":core")
+        compile project(":integrations-rest")
+    }
+}
