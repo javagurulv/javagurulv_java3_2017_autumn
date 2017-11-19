@@ -1,0 +1,15 @@
+apply from: "${rootDir}/gradle/java.gradle"
+
+apply plugin: 'org.springframework.boot'
+
+project(":public-app") {
+    dependencies {
+        compile project(":public-api")
+        compile project(":core-api")
+
+        compile libs.spring_boot_starter_web
+        compile libs.spring_boot_starter_activemq
+        compile libs.spring_boot_starter_test
+        compile libs.activemqPool
+    }
+}

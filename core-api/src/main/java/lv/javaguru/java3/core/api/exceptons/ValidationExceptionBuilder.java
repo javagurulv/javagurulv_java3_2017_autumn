@@ -1,5 +1,7 @@
 package lv.javaguru.java3.core.api.exceptons;
 
+import lv.javaguru.java3.core.api.common.ResponseStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
