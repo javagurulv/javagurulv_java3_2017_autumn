@@ -12,6 +12,7 @@ buildscript {
 }
 
 apply from: "${rootDir}/gradle/dependencies.gradle"
+apply from: "${rootDir}/gradle/publishing.gradle"
 
 allprojects {
     group "lv.javaguru.java3"

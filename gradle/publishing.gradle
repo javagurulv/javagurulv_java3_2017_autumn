@@ -1,0 +1,27 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    repositories {
+        maven {
+            name 'maven-releases'
+            credentials {
+                username = 'admin'
+                password = 'admin'
+            }
+            if (project.version.toString().endsWith('-SNAPSHOT')) {
+                url "http://localhost:8081/repository/javaguru-snapshots/"
+            } else {
+                url "http://localhost:8081/repository/javaguru-releases/"
+            }
+        }
+    }
+
+    if (project.plugins.hasPlugin("java")) {
+        publications {
+            mavenJava(MavenPublication) {
+                def g = baseGroupId + project.path.replaceAll(":", ".")
+                groupId = g.substring(0, g.lastIndexOf('.'))
+            }
+        }
+    }
+}
