@@ -1,5 +1,5 @@
-nssm stop JavaGuru 
+C:\ProgramData\chocolatey\bin\nssm.exe stop JavaGuru 
 
 copy ..\core-app\build\libs\*.jar c:\Software\JavaGuru\core-app.jar
 
-nssm start JavaGuru
+C:\ProgramData\chocolatey\bin\nssm.exe start JavaGuru
