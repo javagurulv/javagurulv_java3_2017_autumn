@@ -3,7 +3,7 @@
 choco install nssm -y
 
 md c:\Software\JavaGuru
-copy ..\core-app\build\libs\*.jar c:\Software\JavaGuru\core-app.jar
+xcopy /y ..\core-app\build\libs\*.jar c:\Software\JavaGuru\core-app.jar
 
 nssm install JavaGuru javaw.exe 
 nssm set JavaGuru AppDirectory c:\Software\JavaGuru
