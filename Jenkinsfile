@@ -5,7 +5,7 @@ node {
 	stage ('Build') {
 		bat 'gradlew.bat clean build'
 	}
-	stage ('Build') {
+	stage ('Test') {
 		bat 'gradlew.bat test'
 	}
 }
