@@ -3,15 +3,15 @@ node {
 		checkout scm
 	}
 	stage ('Build') {
-		bat 'gradlew.bat clean build snapshot'
+		bat 'gradlew.bat clean build snapshot --parallel'
 	}
 	stage ('Test') {
-		bat 'gradlew.bat test'
+		bat 'gradlew.bat test --parallel'
 	}
 	stage ('Publish') {
-		bat 'gradlew.bat snapshot publish'
+		bat 'gradlew.bat snapshot publish --parallel'
 	}
 	stage ('Release') {
-		bat 'gradlew.bat final'
+		bat 'gradlew.bat final --parallel'
 	}
 }
