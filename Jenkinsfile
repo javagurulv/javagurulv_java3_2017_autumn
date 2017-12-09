@@ -1,5 +1,5 @@
 node {
 	stage ('Build') {
-		bat 'gradlew clean build'
+		bat 'gradlew.bat clean build'
 	}
 }
