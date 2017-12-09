@@ -3,7 +3,7 @@ node {
 		checkout scm
 	}
 	stage ('Build') {
-		bat 'gradlew.bat clean build snapshot --parallel'
+		bat 'gradlew.bat clean build snapshot --parallel --stacktrace'
 	}
 	stage ('Test') {
 		bat 'gradlew.bat test --parallel'
