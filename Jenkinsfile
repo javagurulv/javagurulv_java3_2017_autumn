@@ -9,6 +9,6 @@ node {
 		bat 'gradlew.bat test'
 	}
 	stage ('Release') {
-		bat 'gradlew.bat finals'
+		bat 'gradlew.bat final'
 	}
 }
