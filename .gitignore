@@ -7,3 +7,5 @@
 
 #Gradle
 .gradle
+build/
+logs/
