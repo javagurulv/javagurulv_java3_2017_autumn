@@ -1,6 +1,6 @@
 node {
 	stage ('Checkout') {
-		checout scm
+		checkout scm
 	}
 	stage ('Build') {
 		bat 'gradlew.bat clean build'
