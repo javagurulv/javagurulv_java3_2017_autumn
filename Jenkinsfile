@@ -16,4 +16,7 @@ node {
 			bat 'deployLocal.bat'
 		}
 	}
+	stage ('Release') {
+		bat 'gradlew.bat final publish --parallel --stacktrace'
+	}
 }
