@@ -12,6 +12,8 @@ node {
 		bat 'gradlew.bat snapshot publish --parallel'
 	}
 	stage ('Deploy to local') {
-		bat '.\deplotment\deployLocal.bat'
+		dir('deplotment') {
+			bat 'deployLocal.bat'
+		}
 	}
 }
