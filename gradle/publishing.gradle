@@ -6,22 +6,18 @@ publishing {
             name 'maven-releases'
             credentials {
                 username = 'admin'
-                password = 'admin'
+                password = 'admin123'
             }
             if (project.version.toString().endsWith('-SNAPSHOT')) {
-                url "http://localhost:8081/repository/javaguru-snapshots/"
+                url "http://localhost:8081/nexus/content/repositories/javaguru-snapshots/"
             } else {
-                url "http://localhost:8081/repository/javaguru-releases/"
+                url "http://localhost:8081/nexus/content/repositories/javaguru-releases/"
             }
         }
     }
-
-    if (project.plugins.hasPlugin("java")) {
-        publications {
-            mavenJava(MavenPublication) {
-                def g = baseGroupId + project.path.replaceAll(":", ".")
-                groupId = g.substring(0, g.lastIndexOf('.'))
-            }
-        }
-    }
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
 }

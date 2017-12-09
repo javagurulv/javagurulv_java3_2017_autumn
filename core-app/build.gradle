@@ -17,3 +17,7 @@ project(":core-app") {
         compile libs.spring_boot_starter_test
     }
 }
+
+publish {
+    dependsOn assemble
+}
