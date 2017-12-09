@@ -17,6 +17,6 @@ node {
 		}
 	}
 	stage ('Release') {
-		bat 'gradlew.bat final publish --parallel --stacktrace'
+		bat 'gradlew.bat final --parallel --debug'
 	}
 }
