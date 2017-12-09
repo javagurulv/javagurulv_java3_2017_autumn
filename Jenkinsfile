@@ -3,21 +3,26 @@ node {
 		checkout scm
 	}
 	stage ('Build') {
-		bat 'gradlew.bat clean build snapshot --parallel --stacktrace'
+		bat 'gradlew.bat clean build snapshot --parallel --no-daemon'
 	}
 	stage ('Test') {
-		bat 'gradlew.bat test --parallel'
+		bat 'gradlew.bat test --parallel --no-daemon'
 	}
 	stage ('Publish') {
-		bat 'gradlew.bat snapshot publish --parallel'
+		bat 'gradlew.bat snapshot publish --parallel --no-daemon'
 	}
 	stage ('Deploy to local') {
 		dir('deployment') {
 			bat 'deployLocal.bat'
 		}
 	}
-	stage ('Release') {
-		bat 'git status'
-		bat 'gradlew.bat final --parallel'
+	stage ('Clean Workspace') {
+		cleanUp() 
 	}
+}
+
+def cleanUp() {
+    stage('Delete workspace from Jenkins') {
+        step([$class: 'WsCleanup'])
+    }
 }
