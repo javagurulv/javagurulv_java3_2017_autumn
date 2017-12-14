@@ -2,7 +2,7 @@ node {
 	stage ('Checkout') {
 		checkout scm
 	}
-	satage ('Build') {
+	stage ('Build') {
 		bat 'gradlew.bat clean build snapshot --parallel --no-daemon'
 	}
 	stage ('Test') {
