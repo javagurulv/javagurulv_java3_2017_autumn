@@ -16,9 +16,9 @@ node {
 	//		bat 'deployLocal.bat'
 	//	}
 	//}
-	stage ('Clean Workspace') {
-		cleanUp() 
-	}
+	//stage ('Clean Workspace') {
+	//	cleanUp() 
+	//}
 }
 
 def cleanUp() {
