@@ -8,5 +8,4 @@ node {
 	stage ('Test') {
 		bat 'gradlew.bat test --parallel --no-daemon'
 	}
-
 }
