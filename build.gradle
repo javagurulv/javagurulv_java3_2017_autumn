@@ -37,7 +37,7 @@ idea {
 wrapper {
     gradleVersion "4.1"
 }
-
+/* uncomment this to enable publishing
 allprojects {
     group "lv.javaguru"
 
@@ -45,3 +45,4 @@ allprojects {
 
     task allDeps(type: DependencyReportTask) {}
 }
+*/
