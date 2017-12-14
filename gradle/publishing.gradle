@@ -1,0 +1,27 @@
+// This is just example!!!
+// use gradlew publish - to publish artifacts via this script.
+
+
+apply plugin: 'maven-publish'
+
+publishing {
+    repositories {
+        maven {
+            name 'maven-releases'
+            credentials {
+                username = 'admin'
+                password = 'admin123'
+            }
+            if (project.version.toString().endsWith('-SNAPSHOT')) {
+                url "http://localhost:8081/nexus/content/repositories/javaguru-snapshots/"
+            } else {
+                url "http://localhost:8081/nexus/content/repositories/javaguru-releases/"
+            }
+        }
+    }
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+}

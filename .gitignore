@@ -4,3 +4,8 @@
 #IDEA ignore personal project settings
 .idea/
 *.iml
+
+#Gradle
+.gradle
+build/
+logs/
