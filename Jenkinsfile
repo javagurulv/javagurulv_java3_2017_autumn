@@ -11,11 +11,11 @@ node {
 	stage ('Publish') {
 		bat 'gradlew.bat snapshot --parallel --no-daemon'
 	}
-	#stage ('Deploy to local') {
-	#	dir('deployment') {
-	#		bat 'deployLocal.bat'
-	#	}
-	#}
+	//stage ('Deploy to local') {
+	//	dir('deployment') {
+	//		bat 'deployLocal.bat'
+	//	}
+	//}
 	stage ('Clean Workspace') {
 		cleanUp() 
 	}
